@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+
+    <title>Change or Remove Pokemon</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <button class="btn btn-secondary mb-2" onclick="window.location.href='/';">Go Back</button>
+        <h1 class="mb-3">Pokemon Changes and Deletes</h1>
+        <h2>Here you can change a self-made pokemon to your liking or delete and blacklist certain official pokemon.</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mt-4">Change a Pokemon</h2>
+                <form action="/change" method="POST">
+                    <label class="form-label">Pokemon Name</label>
+                    <input type="text" class="form-control" name="pokemon_name" placeholder="Old Name">
+                    <input type="text" class="form-control" name="pokemon_newName" placeholder="New Name">
+                    <label class="form-label">Pokemon Type</label>
+                    <input type="text" class="form-control" name="pokemon_newType" placeholder="New Type" required>
+                    <input type="submit" class="btn btn-primary" name="changePokemon" value="Change">
+                </form>
+                {% if success_message %}
+                <p class="mt-2" style="color: green;">{{ success_message }}</p>
+                {% endif %}
+                {% if error_message %}
+                <p class="mt-2" style="color: red;">{{ error_message }}</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h2 class="mt-4">Delete a Pokemon</h2>
+                <form action="/delete" method="POST">
+                    <label class="form-label">Pokemon Name</label>
+                    <input type="text" class="form-control" name="pokemon_name" placeholder="Pokemon Name">
+                    <input type="submit" class="btn btn-danger" name="deletePokemon" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

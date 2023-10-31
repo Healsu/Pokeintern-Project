@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search your goober</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <button class="btn btn-secondary mb-2" onclick="window.location.href='/';">Go Back</button>
+        <h1 class="mb-3">Pokemon Search</h1>
+        <h2>Here you can find an official or custom-made pokemon by typing in their name. You can also create your own.</h2>
+        <p class="text-danger">[Reminder that all letters must be lowercase, else I'll CTRL+ALT+DELETE your ass😡]</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="border p-3 mb-4">
+                    <h2>Find Pokemon</h2>
+                    <form action="/search" method="POST">
+                        <div class="form-group">
+                            <label for="pokemonName">Pokemon Name</label>
+                            <input type="text" class="form-control" id="pokemonName" name="pokemonName">
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="findPokemon">Find</button>
+                    </form>
+                    {% if pokemon_name %}
+                        <h4>Name: {{ pokemon_name }}</h4>
+                        <p>Types: {{ pokemon_type|join(', ') }}</p>
+                        <img src="{{ pokemon_sprite_url }}" alt="{{ pokemon_name }} sprite" class="pokemonImage img-fluid">
+                    {% elif error_message %}
+                        <p class="text-danger">{{ error_message }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="border p-3">
+                    <h2>Create a Pokemon</h2>
+                    <form action="/search" method="POST">
+                        <div class="form-group">
+                            <label for="createPokemonName">Pokemon Name</label>
+                            <input type="text" class="form-control" id="createPokemonName" name="pokemon_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="createPokemonType">Pokemon Type</label>
+                            <input type="text" class="form-control" id="createPokemonType" name="pokemon_type">
+                        </div>
+                        <button type="submit" class="btn btn-success" name="createPokemon">Create</button>
+                    </form>
+                    {% if success_message %}
+                        <p class="text-success mt-3">{{ success_message }}</p>
+                    {% elif error_message %}
+                        <p class="text-danger mt-3">{{ error_message }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

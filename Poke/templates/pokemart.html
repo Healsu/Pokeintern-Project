@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet"/>
+
+    <title>Pokemart</title>
+</head>
+<body>
+    <button onclick ="window.location.href='/';">Go Back</button>
+    <h1>Pokemart Items</h1>
+    <h2>Here is a list of some of the best selling items in the Pokemon world, just.....ignore the first one that one isnt 
+        sadly for sale and has been put there by mistake
+    </h2>
+<div class='marketBox'>
+    <ul>
+        {% for item in items %}
+            <li>
+                <h2 class='marketName'>{{ item.name }}</h2>
+                <p>{{ item.effect }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+
+.mb-3{
+    margin-top: 10px;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 75px;
+
+}
+.col-md-6 {
+    border: 3px solid #9f1616; /* Change the color code here */
+    border-radius: 10px;
+    padding: 15px;
+    
+}
